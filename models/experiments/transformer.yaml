@@ -1,0 +1,10 @@
+Train:
+  
+
+  learning_rate = 0.001 * 0.8
+  
+
+  EPOCHS = 10
+
+network:
+  model: trans_model 

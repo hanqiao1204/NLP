@@ -1,0 +1,17 @@
+Train:
+  BATCH_SIZE = 128
+  encoder_emb_size = 32
+  encoder_hidden_size = 64
+  encoder_dropout = 0.4
+
+  decoder_emb_size = 32
+  decoder_hidden_size = 64
+  decoder_dropout = 0.4
+
+  learning_rate = 0.001 * 10
+  model_type = "LSTM"
+
+  EPOCHS = 17
+
+network:
+  model: seq2seq_model 
