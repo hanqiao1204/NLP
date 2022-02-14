@@ -6,7 +6,6 @@ import torch
 from torch import nn
 import random
 
-####### Do not modify these imports.
 
 class TransformerTranslator(nn.Module):
    
@@ -60,14 +59,7 @@ class TransformerTranslator(nn.Module):
 
         
     def forward(self, inputs):
-        """
-        This function computes the full Transformer forward pass.
-        Put together all of the layers you've developed in the correct order.
 
-        :param inputs: a PyTorch tensor of shape (N,T). These are integer lookups.
-
-        :returns: the model outputs. Should be normalized scores of shape (N,1).
-        """
 
 
         emb = self.embed(inputs)
@@ -81,10 +73,7 @@ class TransformerTranslator(nn.Module):
     
     
     def embed(self, inputs):
-        """
-        :param inputs: intTensor of shape (N,T)
-        :returns embeddings: floatTensor of shape (N,T,H)
-        """
+
         emb = self.emb(inputs)
         pos_en = torch.arange(0, inputs.shape[1]).unsqueeze(0).repeat(inputs.shape[0], 1)
         embeddings = emb + self.pos_emb(pos_en)
@@ -92,13 +81,7 @@ class TransformerTranslator(nn.Module):
         return embeddings
         
     def multi_head_attention(self, inputs):
-        """
-        :param inputs: float32 Tensor of shape (N,T,H)
-        :returns outputs: float32 Tensor of shape (N,T,H)
-        
-        Traditionally we'd include a padding mask here, so that pads are ignored.
-        This is a simplified implementation.
-        """
+
         dk = np.sqrt(self.dim_k)
         k_1 = self.k1(inputs)
         v_1 = self.v1(inputs)
@@ -124,10 +107,7 @@ class TransformerTranslator(nn.Module):
     
     
     def feedforward_layer(self, inputs):
-        """
-        :param inputs: float32 Tensor of shape (N,T,H)
-        :returns outputs: float32 Tensor of shape (N,T,H)
-        """
+        
 
         ln_1 = self.ff_1(inputs)
         ffn = self.ff_2(self.relu(ln_1))
@@ -137,10 +117,7 @@ class TransformerTranslator(nn.Module):
         
     
     def final_layer(self, inputs):
-        """
-        :param inputs: float32 Tensor of shape (N,T,H)
-        :returns outputs: float32 Tensor of shape (N,T,V)
-        """
+        
         
 
         outputs = self.final_ln(inputs)
